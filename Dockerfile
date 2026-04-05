@@ -1,6 +1,6 @@
 
 #Stage 1:Build Frontend
-FROM node:18 as build-stage1
+FROM node:18 AS build-stage
 
 WORKDIR /code
 
