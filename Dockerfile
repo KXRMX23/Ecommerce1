@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 #Stage 1:Build Frontend
 FROM node:18 as build-stage
 
@@ -48,7 +48,7 @@ WORKDIR /code/Backend/EcommerceInventory
 
 #Run the Django Server
 CMD ["gunicorn","EcommerceInventory.wsgi:application","--bind","0.0.0.0:8000"]
-=======
+
 # Stage 1: Build frontend
 FROM node:18 as build-stage
 WORKDIR /code
@@ -102,4 +102,4 @@ EXPOSE 80
 WORKDIR /code/Backend/EcommerceInventory
 # Command to run Django server
 CMD ["gunicorn", "EcommerceInventory.wsgi:application", "--bind", "0.0.0.0:8000"]
->>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
+
