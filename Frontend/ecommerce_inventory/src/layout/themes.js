@@ -1,4 +1,8 @@
 import { createTheme } from '@mui/material/styles';
+<<<<<<< HEAD
+=======
+
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
 // Dark Theme
 export const orangeDarkTheme = createTheme({
   typography: {
@@ -72,10 +76,13 @@ export const orangeDarkTheme = createTheme({
       },
     },
   },
+<<<<<<< HEAD
   logo:{
     rectangle:'/logo_light.png',
     square:'/logo_square_light.png',
   },
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
 });
 
 export const orangeLightTheme = createTheme({
@@ -150,10 +157,13 @@ export const orangeLightTheme = createTheme({
       },
     },
   },
+<<<<<<< HEAD
   logo:{
     rectangle:'/logo_dark.png',
     square:'/logo_square_dark.png',
   },
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
 });
 
 export const redDarkTheme = createTheme({
@@ -231,10 +241,13 @@ export const redDarkTheme = createTheme({
       },
     },
   },
+<<<<<<< HEAD
   logo:{
     rectangle:'/logo_light.png',
     square:'/logo_square_light.png',
   },
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
 });
 
 export const redLightTheme = createTheme({
@@ -311,11 +324,14 @@ export const redLightTheme = createTheme({
       },
     },
   },
+<<<<<<< HEAD
   logo:{
     rectangle:'/logo_dark.png',
     square:'/logo_square_dark.png',
   },
 
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
 });
 export const greenDarkTheme = createTheme({
   typography: {
@@ -389,10 +405,13 @@ export const greenDarkTheme = createTheme({
       },
     },
   },
+<<<<<<< HEAD
   logo:{
     rectangle:'/logo_light.png',
     square:'/logo_square_light.png',
   },
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
 });
 export const greenLightTheme = createTheme({
   typography: {
@@ -468,11 +487,14 @@ export const greenLightTheme = createTheme({
       },
     },
   },
+<<<<<<< HEAD
   logo:{
     rectangle:'/logo_dark.png',
     square:'/logo_square_dark.png',
   },
 
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
 });
 
 export const blueDarkTheme = createTheme({
@@ -547,11 +569,14 @@ export const blueDarkTheme = createTheme({
       },
     },
   },
+<<<<<<< HEAD
   logo:{
     rectangle:'/logo_light.png',
     square:'/logo_square_light.png',
   },
 
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
 });
 
 export const blueLightTheme = createTheme({
@@ -628,10 +653,13 @@ export const blueLightTheme = createTheme({
       },
     },
   },
+<<<<<<< HEAD
   logo:{
     rectangle:'/logo_dark.png',
     square:'/logo_square_dark.png',
   },
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
 });
 
 
@@ -701,10 +729,13 @@ export const customTheme = createTheme({
       },
     },
   },
+<<<<<<< HEAD
   logo:{
     rectangle:'/logo_dark.png',
     square:'/logo_square_dark.png',
   },
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
 });
 export const lightTheme = createTheme({
   typography: {
@@ -723,7 +754,10 @@ export const lightTheme = createTheme({
     background: {
       paper: 'rgba(241, 244, 250, 1)',
       default: 'rgba(255, 255, 255, 1)',
+<<<<<<< HEAD
       light: 'rgba(255, 255, 255, 1)',
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
     },
     error: {
       main: 'rgba(255, 0, 0, 1)', // Set error color to red
@@ -801,11 +835,14 @@ export const lightTheme = createTheme({
       },
     },
   },
+<<<<<<< HEAD
   logo:{
     rectangle:'/logo_dark.png',
     square:'/logo_square_dark.png',
   },
 
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
 });
 
 
@@ -877,10 +914,13 @@ export const darkTheme = createTheme({
       },
     },
   },
+<<<<<<< HEAD
   logo:{
     rectangle:'/logo_light.png',
     square:'/logo_square_light.png',
   },
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
 });
 export const basicTheme = createTheme({
   typography: {
@@ -913,10 +953,13 @@ export const basicTheme = createTheme({
       primary: 'rgba(255, 255, 255, 1)',
     },
   },
+<<<<<<< HEAD
   logo:{
     rectangle:'/logo_light.png',
     square:'/logo_square_light.png',
   },
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
   components: {
     MuiButton: {
       styleOverrides: {

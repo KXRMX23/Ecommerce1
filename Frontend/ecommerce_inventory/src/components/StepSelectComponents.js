@@ -17,11 +17,30 @@ const StepSelectComponents = ({formConfig,fieldType}) => {
         <Box>
             {selectFields.map((field,index)=>(
                 <FormControl fullWidth margin="normal" key={field.name}>
+<<<<<<< HEAD
+=======
+                    {/* <InputLabel>{field.label}</InputLabel>
+                    <Select 
+                    {...register(field.name,{required:field.required})}
+                    defaultValue={field.default}
+                    error={!!errors[field.name]}
+                    label={field.label}>
+                            {
+                                field.options.map((option,index)=>
+                                    <MenuItem key={option.id} value={option.id}>{option.value}</MenuItem>
+                                )
+                            }
+                    </Select> */}
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
                     <Autocomplete   
                         {...register(field.name,{required:field.required})}
                         options={field.options}
                          getOptionLabel={(option)=>option.value}
+<<<<<<< HEAD
                          defaultValue={field.options.find(option=>option.id===watch(field.name)) || field.options.find(option=>option.id===field.default) || null}
+=======
+                         defaultValue={field.options.find(option=>option.id===watch(field.name)) || null}
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
                          onChange={(event,newValue)=>{
                             setValue(field.name,newValue?newValue.id:'')
                          }}

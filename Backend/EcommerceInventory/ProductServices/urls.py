@@ -1,4 +1,5 @@
 from .controller.CategoryController import CategoryListView
+<<<<<<< HEAD
 from .controller.ProductController import ProductListView,ProductReviewListView,CreateProductReviewView,UpdateProductReviewView,ProductQuestionsListView,CreateProductQuestionsView,UpdateProductQuestionsView
 from django.urls import path
 
@@ -13,4 +14,10 @@ urlpatterns = [
     path('productQuestions/<str:product_id>/',ProductQuestionsListView.as_view(),name='product_question_list'),
     path('createProductQuestion/<str:product_id>/',CreateProductQuestionsView.as_view(),name='product_question_create'),
     path('updateProductQuestion/<str:product_id>/<pk>/',UpdateProductQuestionsView.as_view(),name='product_question_update'),
+=======
+from django.urls import path
+
+urlpatterns = [
+    path('categories/',CategoryListView.as_view(),name='category_list')
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
 ]

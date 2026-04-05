@@ -3,10 +3,17 @@ import axios from 'axios';
 import config from '../../utils/config';
 
 export const fetchSidebar=createAsyncThunk('data/fetchSidebar',async()=>{
+<<<<<<< HEAD
     const response=await axios.get(`${config.API_URL}getMenus/`,{headers:{Authorization:`Bearer ${localStorage.getItem('token')}`}});
     const sidebarData=response.data.data;
     const setActiveAndExpanded=(item)=>{
         if(item.module_url && window.location.pathname.indexOf(item.module_url)!==-1){
+=======
+    const response=await axios.get(`${config.API_URL}getMenus/`);
+    const sidebarData=response.data.data;
+    const setActiveAndExpanded=(item)=>{
+        if(item.module_url && window.location.pathname===item.module_url){
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
             item.active=true;
             item.expanded=true;
             return true;
@@ -44,7 +51,11 @@ const sidebarSlice=createSlice({
             state.items.forEach(item=>{
                 item.active=false;
                 item.expanded=false;
+<<<<<<< HEAD
                 item.submenus?.forEach(submenu=>{
+=======
+                item.submenus.forEach(submenu=>{
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
                     submenu.active=false;
                     if(submenu.id===action.payload.item.id){
                         submenu.active=true;
@@ -63,17 +74,24 @@ const sidebarSlice=createSlice({
                 item.expanded=false;
                 item.submenus.forEach(submenu=>{
                     submenu.active=false;
+<<<<<<< HEAD
                     if(submenu.module_url && window.location.pathname.indexOf(submenu.module_url)!==-1){
+=======
+                    if(submenu.module_url && window.location.pathname===submenu.module_url){
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
                         submenu.active=true;
                         item.active=true;
                         item.expanded=true;
                     }
                 });
+<<<<<<< HEAD
 
                 if(item.module_url && window.location.pathname.indexOf(item.module_url)!==-1 && item.submenus.length===0){
                     item.active=true;
                     item.expanded=true;
                 }
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
             });
         }
     },

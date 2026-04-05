@@ -12,7 +12,11 @@ class DynamicFormController(APIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]
 
+<<<<<<< HEAD
     def post(self,request,modelName,id=None):
+=======
+    def post(self,request,modelName):
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
         #Checking if Model Exist in Our Dynamic Form Models
         if modelName not in getDynamicFormModels():
             return renderResponse(data='Model Not Exist',message='Model Not Exist',status=404)
@@ -71,6 +75,7 @@ class DynamicFormController(APIView):
         fieldsdata['domain_user_id']=request.user.domain_user_id
         fieldsdata['added_by_user_id']=Users.objects.get(id=request.user.id)
 
+<<<<<<< HEAD
         if id:
             model_instace=model_class.objects.filter(id=id,domain_user_id=request.user.domain_user_id)
             if not model_instace.exists():
@@ -81,6 +86,9 @@ class DynamicFormController(APIView):
             model_instace.save()
         else:          
             model_instace=model_class.objects.create(**fieldsdata)
+=======
+        model_instace=model_class.objects.create(**fieldsdata)
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
 
         #Serializing Data
         serialized_data=serialize('json',[model_instace])
@@ -92,7 +100,11 @@ class DynamicFormController(APIView):
         #Returning the Response
         return renderResponse(data=response_json,message='Data saved successfully')
 
+<<<<<<< HEAD
     def get(self,request,modelName,id=None):
+=======
+    def get(self,request,modelName):
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
         if modelName not in getDynamicFormModels():
             return renderResponse(data='Model Not Found',message='Model Not Found',status=404)
         
@@ -102,6 +114,7 @@ class DynamicFormController(APIView):
         if model_class is None:
             return renderResponse(data='Model Not Found',message='Model Not Found',status=404)
         
+<<<<<<< HEAD
         if id:
             model_instance=model_class.objects.filter(id=id,domain_user_id=request.user.domain_user_id)
             if model_instance.exists():
@@ -111,5 +124,9 @@ class DynamicFormController(APIView):
         else:
             model_instance = model_class()
 
+=======
+
+        model_instance = model_class()
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
         fields=getDynamicFormFields(model_instance,request.user.domain_user_id)
         return renderResponse(data=fields,message='Form fields fetched successfully')

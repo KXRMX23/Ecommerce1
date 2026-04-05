@@ -11,7 +11,11 @@ import { Outlet,useLocation,useNavigate } from 'react-router-dom'; // Import Out
 import { expandItem,activateItem,triggerPageChange } from '../redux/reducer/sidebardata';
 import {useDispatch} from 'react-redux';
 
+<<<<<<< HEAD
 const Layout = ({sidebarList,pageTitle,childPage}) => {
+=======
+const Layout = ({sidebarList,pageTitle}) => {
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
   const [mobileOpen, setMobileOpen] = useState(false);
   const [desktopOpen, setDesktopOpen] = useState(true); // State for desktop sidebar
   const [themeMode, setThemeMode] = useState('light');
@@ -177,7 +181,11 @@ const Layout = ({sidebarList,pageTitle,childPage}) => {
       className='sidebar'
     >
       <Box sx={{ display: 'flex', alignItems: 'center', marginBottom: '16px' }}>
+<<<<<<< HEAD
         <img src={theme?.logo?.rectangle} alt="Logo" className='logo' style={{ marginRight: '16px',width:'100%' }} />
+=======
+        <img src={logo} alt="Logo" className='logo' style={{ marginRight: '16px' }} />
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
         
       </Box>
       <List sx={{ '& .MuiListItem-root': { transition: 'background-color 0.3s' } }}>
@@ -456,7 +464,11 @@ const Layout = ({sidebarList,pageTitle,childPage}) => {
             {profileMenu}
             {themeMenuUI}
             <section className='main-content' style={{ padding: '20px' }}>
+<<<<<<< HEAD
               {childPage?childPage:<Outlet/>}
+=======
+              <Outlet/>
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
             </section>
             <Box
               component="footer"

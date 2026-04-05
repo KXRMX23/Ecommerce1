@@ -17,6 +17,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path, re_path
 
+<<<<<<< HEAD
 from EcommerceInventory.views import index,FileUploadViewInS3
 from EcommerceInventory import settings
 from UserServices.Controller.DynamicFormController import DynamicFormController
@@ -25,10 +26,20 @@ from UserServices.Controller.SidebarController import ModuleUrlsListAPIView, Mod
 from django.conf.urls.static import static
 
 
+=======
+from EcommerceInventory import settings
+from EcommerceInventory.views import index
+from UserServices.Controller.DynamicFormController import DynamicFormController
+from UserServices.Controller.SuperAdminDynamicFormController import SuperAdminDynamicFormController
+from UserServices.Controller.SidebarController import ModuleView
+from django.conf.urls.static import static
+
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/auth/', include('UserServices.urls')),
     path('api/getForm/<str:modelName>/',DynamicFormController.as_view(),name='dynamicForm'),
+<<<<<<< HEAD
     path('api/getForm/<str:modelName>/<str:id>/',DynamicFormController.as_view(),name='dynamicForm'),
     path('api/superAdminForm/<str:modelName>/',SuperAdminDynamicFormController.as_view(),name='superadmindynamicForm'),
     path('api/moduleUrls/',ModuleUrlsListAPIView.as_view(),name='moduleUrls_superadmin'),
@@ -45,3 +56,18 @@ if settings.DEBUG:
 urlpatterns+=[
     re_path(r'^(?:.*)/?$',index,name='index')
 ]
+=======
+    path('api/superAdminForm/<str:modelName>/',SuperAdminDynamicFormController.as_view(),name='superadmindynamicForm'),
+    path('api/getMenus/',ModuleView.as_view(),name='sidebarmenu'),
+    path('api/products/',include('ProductServices.urls')),
+    # re_path(r'^(?:.*)/?$', index),
+
+]
+if settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
+# Add the catch-all pattern at the end
+urlpatterns += [
+    re_path(r'^(?:.*)/?$', index),
+]
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f

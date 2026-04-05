@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 import { useState,useEffect, useRef } from "react";
 import useApi from "../../hooks/APIHandler";
 import { useNavigate } from "react-router-dom";
 import { Box, Breadcrumbs, Divider, Grid, IconButton, LinearProgress, TextField, Typography } from "@mui/material";
+=======
+import { useState,useEffect } from "react";
+import useApi from "../../hooks/APIHandler";
+import { useNavigate } from "react-router-dom";
+import { Box, Breadcrumbs, IconButton, LinearProgress, TextField, Typography } from "@mui/material";
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { isValidUrl } from "../../utils/Helper";
 import Add from '@mui/icons-material/Add';
@@ -10,9 +17,12 @@ import Edit from '@mui/icons-material/Edit';
 import ExpandLessRounded from '@mui/icons-material/ExpandLessRounded';
 import ExpandMoreRounded from '@mui/icons-material/ExpandMoreRounded';
 import ExpanableRow from "./ExpandableRow";
+<<<<<<< HEAD
 import RenderImage from "../../components/RenderImage";
 import { Close, PanoramaRounded } from "@mui/icons-material";
 import Image from "../../components/Image";
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
 
 const ManageCategories = () => {
     const [data,setData]=useState([]);
@@ -25,10 +35,14 @@ const ManageCategories = () => {
     const [searchQuery,setSearchQuery]=useState("");
     const [debounceSearch,setDebounceSearch]=useState("");
     const [ordering,setOrdering]=useState([{field:'id',sort:'desc'}]);
+<<<<<<< HEAD
     const [showImages,setShowImages]=useState(false);
     const [selectedImages,setSelectedImages]=useState([]);
     const {error,loading,callApi}=useApi();    
     const divImage=useRef();
+=======
+    const {error,loading,callApi}=useApi();
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
     const navigate=useNavigate();
 
     useEffect(()=>{
@@ -64,7 +78,10 @@ const ManageCategories = () => {
     }
     const onEditClick=(params)=>{
         console.log(params);
+<<<<<<< HEAD
         navigate(`/form/category/${params.row.id}`)
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
     }
     const onAddClick=(params)=>{
         console.log(params);
@@ -112,7 +129,11 @@ const ManageCategories = () => {
                 }
                 else if(key==='image'){
                     columns.push({field:key,headerName:key.charAt(0).toUpperCase()+key.slice(1).replaceAll("_"," "),width:150,sortable:false,renderCell:(params)=>{
+<<<<<<< HEAD
                         return <Box display={"flex"}><RenderImage data={params.row.image} name={params.row.name}/><IconButton onClick={()=>{ setSelectedImages(params.row.image); setShowImages(true); }}><PanoramaRounded/></IconButton></Box>
+=======
+                        return (params.row.image && params.row.image!=='' && isValidUrl(params.row.image))?<img src={params.row.image} alt={params.row.name} style={{width:70,height:70,padding:'5px'}}/>:<Typography variant="body2" pt={3} pb={3}>No Image</Typography> 
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
                     }})
                 }
                 else{
@@ -128,12 +149,15 @@ const ManageCategories = () => {
     }
 
     useEffect(()=>{
+<<<<<<< HEAD
         if(showImages){
             divImage.current.scrollIntoView({behavior:'smooth'})
         }
     },[selectedImages])
 
     useEffect(()=>{
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
         getCategories();
     },[paginationModel,debounceSearch,ordering])
 
@@ -143,14 +167,20 @@ const ManageCategories = () => {
                 <Typography variant="body2" onClick={()=>navigate('/')}>Home</Typography>
                 <Typography variant="body2" onClick={()=>navigate('/manage/category')}>Manage Category</Typography>
             </Breadcrumbs>
+<<<<<<< HEAD
             <Grid container spacing={2}>
                 <Grid item xs={12} sm={showImages?8:12} lg={showImages?9:12}>
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
             <TextField label="Search" variant="outlined" fullWidth onChange={(e)=>setSearchQuery(e.target.value)} margin="normal"/>
             <DataGrid
                 rows={data}
                 columns={columns}
                 rowHeight={75}
+<<<<<<< HEAD
                 autoHeight={true}
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
                 sortingOrder={['asc','desc']}
                 sortModel={ordering}
                 onSortModelChange={handleSorting}
@@ -177,12 +207,17 @@ const ManageCategories = () => {
                         loadingOverlay:LinearProgress,
                         toolbar:GridToolbar,
                         row:(props)=>{
+<<<<<<< HEAD
                             return <ExpanableRow row={props.row} props={props} onEditClick={onEditClick} onDeleteClick={onDeleteClick} setSelectedImages={setSelectedImages} setShowImages={setShowImages}/>
+=======
+                            return <ExpanableRow row={props.row} props={props} onEditClick={onEditClick} onDeleteClick={onDeleteClick}/>
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
                         }
                     }
                 }
 
                 />
+<<<<<<< HEAD
                 </Grid>
                     {showImages && <Grid item xs={12} sm={4} lg={3} sx={{height:'600px',overflowY:'auto'}} ref={divImage}>
                         <Box m={2} display={"flex"} justifyContent={"space-between"}>
@@ -199,6 +234,8 @@ const ManageCategories = () => {
                          }
                     </Grid>}
                 </Grid>
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
         </Box>
     )
 }

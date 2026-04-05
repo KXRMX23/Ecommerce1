@@ -43,6 +43,7 @@ export const getUser=()=>{
 
 export const isValidUrl=(url)=>{
     try{
+<<<<<<< HEAD
         if(Array.isArray(url)){
             let image=url.filter((item)=>item.match(/\.(jpeg|jpg|gif|png)$/)!=null);
             if(image.length>0){
@@ -61,6 +62,9 @@ export const isValidUrl=(url)=>{
         else{
             new URL(url);
         }
+=======
+        new URL(url);
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
         return true;
     }
     catch(e){
@@ -68,6 +72,7 @@ export const isValidUrl=(url)=>{
     }
 }
 
+<<<<<<< HEAD
 export const getImageUrl=(url)=>{
     if(Array.isArray(url)){
         let image=url.filter((item)=>item.match(/\.(jpeg|jpg|gif|png)$/)!=null);
@@ -102,6 +107,8 @@ export const checkIsJson=(str)=>{
     return true;
 }
 
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
 export const getFormTypes=()=>{
     return [
         {component:StepSelectComponents,label:"Basic Details",fieldType:'select'},
@@ -111,6 +118,7 @@ export const getFormTypes=()=>{
         {component:StepJsonComponents,label:"Additional Details",fieldType:'json'},
         {component:StepFileComponents,label:"Documents & Files",fieldType:'file'},
     ]
+<<<<<<< HEAD
 }
 
 export const formatText=(key)=>{
@@ -151,4 +159,6 @@ export const getFileMimeTypeFromFileName=(filename)=>{
         return "other/other";
     }
 
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
 }

@@ -5,23 +5,45 @@ from UserServices.models import Users
 
 class PurchaseOrder(models.Model):
     id=models.AutoField(primary_key=True)
+<<<<<<< HEAD
     warehouse_id=models.ForeignKey('InventoryServices.Warehouse',on_delete=models.CASCADE,related_name='warehouse_id')
     supplier_id=models.ForeignKey(Users,on_delete=models.CASCADE,related_name='supplier_id')
+=======
+    warehouse_id=models.ForeignKey('InventoryServices.Warehouse',on_delete=models.CASCADE,blank=True,null=True,related_name='warehouse_id')
+    supplier_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='supplier_id')
+    last_updated_by_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='last_updated_by_user_id_purchase_order')
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
     po_code=models.CharField(max_length=255)
     po_date=models.DateTimeField()
     expected_delivery_date=models.DateTimeField()
     payment_terms=models.CharField(max_length=255,choices=[('CASH','CASH'),('CREDIT','CREDIT'),('ONLINE','ONLINE'),('CHEQUE','CHEQUE')],default='CASH')
     payment_status=models.CharField(max_length=255,choices=[('PAID','PAID'),('UNPAID','UNPAID'),('PARTIAL PAID','PARTIAL PAID'),('CANCELLED','CANCELLED')],default='UNPAID')
+<<<<<<< HEAD
     discount_amount=models.DecimalField(max_digits=10,decimal_places=2,default=0)
     discount_type=models.CharField(max_length=255,choices=[('PERCENTAGE','PERCENTAGE'),('AMOUNT','AMOUNT'),('NO DISCOUNT','NO DISCOUNT'),('ITEM DISCOUNT','ITEM DISCOUNT')],default='NO DISCOUNT')
     additional_details=models.JSONField()
     status=models.CharField(max_length=255,choices=[('DRAFT','DRAFT'),('CREATED','CREATED'),('APPROVED','APPROVED'),('SENT','SENT'),('RECEIVED','RECEIVED'),('PARTIAL RECEIVED','PARTIAL RECEIVED'),('CANCELLED','CANCELLED'),('RETURNED','RETURNED'),('COMPLETE','COMPLETE')],default='DRAFT')
+=======
+    total_amount=models.DecimalField(max_digits=10,decimal_places=2)
+    paid_amount=models.DecimalField(max_digits=10,decimal_places=2)
+    due_amount=models.DecimalField(max_digits=10,decimal_places=2)
+    discount_amount=models.DecimalField(max_digits=10,decimal_places=2)
+    discount_type=models.CharField(max_length=255,choices=[('PERCENTAGE','PERCENTAGE'),('AMOUNT','AMOUNT')],default='PERCENTAGE')
+    shipping_amount=models.DecimalField(max_digits=10,decimal_places=2)
+    shipping_type=models.CharField(max_length=255,choices=[('FREE','FREE'),('PAID','PAID')],default='FREE')
+    shipping_tax_percentage=models.DecimalField(max_digits=10,decimal_places=2)
+    shipping_cancelled_amount=models.DecimalField(max_digits=10,decimal_places=2)
+    shipping_cancelled_tax_amount=models.DecimalField(max_digits=10,decimal_places=2)
+    additional_details=models.JSONField()
+    status=models.CharField(max_length=255,choices=[('DRAFT','DRAFT'),('SENT','SENT'),('RECEIVED','RECEIVED'),('PARTIAL RECEIVED','PARTIAL RECEIVED'),('CANCELLED','CANCELLED'),('RETURNED','RETURNED')],default='DRAFT')
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
     created_by_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='created_by_user_id_purchase_order')
     updated_by_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='updated_by_user_id_purchase_order')
     domain_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='domain_user_id_purchase_order')
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
     approved_by_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='approved_by_user_id_purchase_order')
+<<<<<<< HEAD
     approved_at=models.DateTimeField(null=True,blank=True)
     cancelled_by_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='cancelled_by_user_id_purchase_order')
     cancelled_at=models.DateTimeField(null=True,blank=True)
@@ -57,11 +79,67 @@ class PurchaseOrderInwardedLog(models.Model):
     po_id=models.ForeignKey(PurchaseOrder,on_delete=models.CASCADE,blank=True,null=True,related_name='po_item_id')
     amount_paid=models.DecimalField(max_digits=10,decimal_places=2,default=0)
     invoice_path=models.JSONField()
+=======
+    approved_at=models.DateTimeField()
+    cancelled_by_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='cancelled_by_user_id_purchase_order')
+    cancelled_at=models.DateTimeField()
+    cancelled_reason=models.TextField()
+    received_by_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='received_by_user_id_purchase_order')
+    received_at=models.DateTimeField()
+    returned_by_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='returned_by_user_id_purchase_order')
+    returned_at=models.DateTimeField()
+
+class PurchaseOrderItems(models.Model):
+    id=models.AutoField(primary_key=True)
+    po_id=models.ForeignKey(PurchaseOrder,on_delete=models.CASCADE,blank=True,null=True,related_name='po_id_purchase_order_items')
+    product_id=models.ForeignKey(Products,on_delete=models.CASCADE,blank=True,null=True,related_name='product_id_purchase_order_items')
+    quantity_ordered=models.IntegerField()
+    quantity_received=models.IntegerField()
+    quantity_cancelled=models.IntegerField()
+    quantity_returned=models.IntegerField()
+    buying_price=models.DecimalField(max_digits=10,decimal_places=2)
+    selling_price=models.DecimalField(max_digits=10,decimal_places=2)
+    tax_percentage=models.DecimalField(max_digits=10,decimal_places=2)
+    discount_amount=models.DecimalField(max_digits=10,decimal_places=2)
+    amount_paid=models.DecimalField(max_digits=10,decimal_places=2)
+    amount_returned=models.DecimalField(max_digits=10,decimal_places=2)
+    amount_cancelled=models.DecimalField(max_digits=10,decimal_places=2)
+    amount_ordered=models.DecimalField(max_digits=10,decimal_places=2)
+    tax_percentage=models.DecimalField(max_digits=10,decimal_places=2)
+    tax_amount=models.DecimalField(max_digits=10,decimal_places=2)
+    shipping_amount=models.DecimalField(max_digits=10,decimal_places=2)
+    shipping_tax_amount=models.DecimalField(max_digits=10,decimal_places=2)
+    shipping_cancelled_amount=models.DecimalField(max_digits=10,decimal_places=2)
+    shipping_cancelled_tax_amount=models.DecimalField(max_digits=10,decimal_places=2)
+    discount_type=models.CharField(max_length=255,choices=[('PERCENTAGE','PERCENTAGE'),('AMOUNT','AMOUNT')],default='PERCENTAGE')
+    additional_details=models.JSONField()
+    status=models.CharField(max_length=255,choices=[('DRAFT','DRAFT'),('SENT','SENT'),('RECEIVED','RECEIVED'),('PARTIAL RECEIVED','PARTIAL RECEIVED'),('CANCELLED','CANCELLED'),('RETURNED','RETURNED'),('PARITAL RETURNED','PARITAL RETURNED')],default='DRAFT')
+    created_by_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='created_by_user_id_purchase_order_items')
+    updated_by_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='updated_by_user_id_purchase_order_items')
+    domain_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='domain_user_id_purchase_order_items')
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now=True)
+    approved_by_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='approved_by_user_id_purchase_order_items')
+    approved_at=models.DateTimeField()
+    cancelled_by_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='cancelled_by_user_id_purchase_order_items')
+    cancelled_at=models.DateTimeField()
+    cancelled_reason=models.TextField()
+    received_by_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='received_by_user_id_purchase_order_items')
+    received_at=models.DateTimeField()
+    returned_by_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='returned_by_user_id_purchase_order_items')
+    returned_at=models.DateTimeField()
+
+class PurchaseOrderInwardedLog(models.Model):
+    id=models.AutoField(primary_key=True)
+    po_id=models.ForeignKey(PurchaseOrder,on_delete=models.CASCADE,blank=True,null=True,related_name='po_item_id')
+    invoice_path=models.TextField()
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
     invoice_number=models.CharField(max_length=255)
     notes=models.TextField()
     inwarded_by_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='inwarded_by_user_id_purchase_order_items_inwarded_log')
     inwarded_at=models.DateTimeField()
     additional_details=models.JSONField()
+<<<<<<< HEAD
     status=models.CharField(max_length=255,choices=[('RECEIVED','RECEIVED'),('RETURNED','RETURNED'),('ROLLEDBACK','ROLLEDBACK')],default='RECEIVED')
     domain_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='domain_user_id_inwarded_log')
     shipping_amount=models.DecimalField(max_digits=10,decimal_places=2,default=0)
@@ -73,12 +151,17 @@ class PurchaseOrderInwardedLog(models.Model):
     received_by_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='received_by_user_id_purchase_order')
     received_at=models.DateTimeField(null=True,blank=True)
     returned_by_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='returned_by_user_id_purchase_order')
+=======
+    status=models.CharField(max_length=255,choices=[('DRAFT','DRAFT'),('SENT','SENT'),('RECEIVED','RECEIVED'),('PARTIAL RECEIVED','PARTIAL RECEIVED'),('CANCELLED','CANCELLED'),('RETURNED','RETURNED')],default='DRAFT')
+    domain_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='domain_user_id_inwarded_log')
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
 
 class PurchaseOrderItemInwardedLog(models.Model):
     id=models.AutoField(primary_key=True)
     po_item_id=models.ForeignKey(PurchaseOrderItems,on_delete=models.CASCADE,blank=True,null=True,related_name='po_item_id_inwarded_log')
+<<<<<<< HEAD
     po_inward_id=models.ForeignKey(PurchaseOrderInwardedLog,on_delete=models.CASCADE,blank=True,null=True,related_name='po_item_id_inwarded_log_po_inwarded')
     inwarded_quantity=models.IntegerField()
     buy_price=models.DecimalField(max_digits=10,decimal_places=2,default=0)
@@ -94,6 +177,17 @@ class PurchaseOrderItemInwardedLog(models.Model):
     shipping_cancelled_tax_percentage=models.DecimalField(max_digits=10,decimal_places=2,default=0)
     additional_details=models.JSONField()
     status=models.CharField(max_length=255,choices=[('RECEIVED','RECEIVED'),('ROLLEDBACK','ROLLEDBACK'),('RETURNED','RETURNED')],default='RECEIVED')
+=======
+    inwarded_quantity=models.IntegerField()
+    price=models.DecimalField(max_digits=10,decimal_places=2)
+    tax_percentage=models.DecimalField(max_digits=10,decimal_places=2)
+    discount_amount=models.DecimalField(max_digits=10,decimal_places=2)
+    discount_type=models.CharField(max_length=255,choices=[('PERCENTAGE','PERCENTAGE'),('AMOUNT','AMOUNT')],default='PERCENTAGE')
+    shipping_amount=models.DecimalField(max_digits=10,decimal_places=2)
+    shipping_tax_percentage=models.DecimalField(max_digits=10,decimal_places=2)
+    additional_details=models.JSONField()
+    status=models.CharField(max_length=255,choices=[('DRAFT','DRAFT'),('SENT','SENT'),('RECEIVED','RECEIVED'),('PARTIAL RECEIVED','PARTIAL RECEIVED'),('CANCELLED','CANCELLED'),('RETURNED','RETURNED')],default='DRAFT')
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
     domain_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='domain_user_purcahse_order_id_inwarded_log')
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
@@ -119,6 +213,7 @@ class SalesOrder(models.Model):
     expected_delivery_date=models.DateTimeField()
     payment_terms=models.CharField(max_length=255,choices=[('CASH','CASH'),('CREDIT','CREDIT'),('ONLINE','ONLINE'),('CHEQUE','CHEQUE')],default='CASH')
     payment_status=models.CharField(max_length=255,choices=[('PAID','PAID'),('UNPAID','UNPAID'),('PARTIAL PAID','PARTIAL PAID'),('CANCELLED','CANCELLED')],default='UNPAID')
+<<<<<<< HEAD
     discount_amount=models.DecimalField(max_digits=10,decimal_places=2)
     discount_type=models.CharField(max_length=255,choices=[('PERCENTAGE','PERCENTAGE'),('AMOUNT','AMOUNT'),('NO DISCOUNT','NO DISCOUNT'),('ITEM DISCOUNT','ITEM DISCOUNT')],default='PERCENTAGE')
     shipping_amount=models.DecimalField(max_digits=10,decimal_places=2)
@@ -129,6 +224,20 @@ class SalesOrder(models.Model):
     shipping_cancelled_tax_amount=models.DecimalField(max_digits=10,decimal_places=2)
     additional_details=models.JSONField()
     status=models.CharField(max_length=255,choices=[('DRAFT','DRAFT'),('SENT','SENT'),('DELIVERED','DELIVERED'),('PARTIAL DELIVERED','PARTIAL DELIVERED'),('CANCELLED','CANCELLED'),('RETURNED','RETURNED'),('COMPLETED','COMPLETED')],default='DRAFT')
+=======
+    total_amount=models.DecimalField(max_digits=10,decimal_places=2)
+    paid_amount=models.DecimalField(max_digits=10,decimal_places=2)
+    due_amount=models.DecimalField(max_digits=10,decimal_places=2)
+    discount_amount=models.DecimalField(max_digits=10,decimal_places=2)
+    discount_type=models.CharField(max_length=255,choices=[('PERCENTAGE','PERCENTAGE'),('AMOUNT','AMOUNT')],default='PERCENTAGE')
+    shipping_amount=models.DecimalField(max_digits=10,decimal_places=2)
+    shipping_type=models.CharField(max_length=255,choices=[('FREE','FREE'),('PAID','PAID')],default='FREE')
+    shipping_tax_percentage=models.DecimalField(max_digits=10,decimal_places=2)
+    shipping_cancelled_amount=models.DecimalField(max_digits=10,decimal_places=2)
+    shipping_cancelled_tax_amount=models.DecimalField(max_digits=10,decimal_places=2)
+    additional_details=models.JSONField()
+    status=models.CharField(max_length=255,choices=[('DRAFT','DRAFT'),('SENT','SENT'),('DELIVERED','DELIVERED'),('PARTIAL DELIVERED','PARTIAL DELIVERED'),('CANCELLED','CANCELLED'),('RETURNED','RETURNED')],default='DRAFT')
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
     created_by_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='created_by_user_id_sales_order')
     updated_by_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='updated_by_user_id_sales_order')
     domain_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='domain_user_id_sales_order')
@@ -139,6 +248,13 @@ class SalesOrder(models.Model):
     cancelled_by_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='cancelled_by_user_id_sales_order')
     cancelled_at=models.DateTimeField()
     cancelled_reason=models.TextField()
+<<<<<<< HEAD
+=======
+    received_by_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='received_by_user_id_sales_order')
+    received_at=models.DateTimeField()
+    returned_by_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='returned_by_user_id_sales_order')
+    returned_at=models.DateTimeField()
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
 
 class SalesOrderOrderItems(models.Model):
     id=models.AutoField(primary_key=True)
@@ -158,6 +274,7 @@ class SalesOrderOrderItems(models.Model):
     amount_ordered=models.DecimalField(max_digits=10,decimal_places=2)
     tax_percentage=models.DecimalField(max_digits=10,decimal_places=2)
     tax_amount=models.DecimalField(max_digits=10,decimal_places=2)
+<<<<<<< HEAD
     discount_type=models.CharField(max_length=255,choices=[('PERCENTAGE','PERCENTAGE'),('AMOUNT','AMOUNT')],default='PERCENTAGE')
     additional_details=models.JSONField()
     domain_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='domain_user_id_so_order_items')
@@ -167,11 +284,40 @@ class SalesOrderOutWardedLog(models.Model):
     id=models.AutoField(primary_key=True)
     so_id=models.ForeignKey(SalesOrder,on_delete=models.CASCADE,blank=True,null=True,related_name='so_order_id_outwarded_log')
     invoice_path=models.JSONField()
+=======
+    shipping_amount=models.DecimalField(max_digits=10,decimal_places=2)
+    shipping_tax_amount=models.DecimalField(max_digits=10,decimal_places=2)
+    shipping_cancelled_amount=models.DecimalField(max_digits=10,decimal_places=2)
+    shipping_cancelled_tax_amount=models.DecimalField(max_digits=10,decimal_places=2)
+    discount_type=models.CharField(max_length=255,choices=[('PERCENTAGE','PERCENTAGE'),('AMOUNT','AMOUNT')],default='PERCENTAGE')
+    additional_details=models.JSONField()
+    status=models.CharField(max_length=255,choices=[('DRAFT','DRAFT'),('SENT','SENT'),('DELIVERED','DELIVERED'),('PARTIAL DELIVERED','PARTIAL DELIVERED'),('CANCELLED','CANCELLED'),('RETURNED','RETURNED'),('PARITAL RETURNED','PARITAL RETURNED')],default='DRAFT')
+    created_by_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='created_by_user_id_so_order_items')
+    updated_by_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='updated_by_user_id_so_order_items')
+    domain_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='domain_user_id_so_order_items')
+    created_at=models.DateTimeField(auto_now_add=True)
+    updated_at=models.DateTimeField(auto_now=True)
+    approved_by_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='approved_by_user_id_so_order_items')
+    approved_at=models.DateTimeField()
+    cancelled_by_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='cancelled_by_user_id_so_order_items')
+    cancelled_at=models.DateTimeField()
+    cancelled_reason=models.TextField()
+    shipped_by_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='received_by_user_id_so_order_items')
+    shipped_at=models.DateTimeField()
+    returned_by_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='returned_by_user_id_so_order_items')
+    returned_at=models.DateTimeField()
+
+class SalesOrderOutWardedLog(models.Model):
+    id=models.AutoField(primary_key=True)
+    so_id=models.ForeignKey(SalesOrder,on_delete=models.CASCADE,blank=True,null=True,related_name='so_order_id_outwarded_log')
+    invoice_path=models.TextField()
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
     invoice_number=models.CharField(max_length=255)
     notes=models.TextField()
     outwarded_by_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='outwarded_by_user_id_so_order_items_outwarded_log')
     outwared_at=models.DateTimeField()
     additional_details=models.JSONField()
+<<<<<<< HEAD
     status=models.CharField(max_length=255,choices=[('DELIVERED','DELIVERED'),('RETURNED','RETURNED'),('ROLLEDBACK','ROLLEDBACK')],default='DELIVERED')
     shipping_amount=models.DecimalField(max_digits=10,decimal_places=2,default=0)
     shipping_type=models.CharField(max_length=255,choices=[('FREE','FREE'),('PAID','PAID')],default='FREE')
@@ -183,6 +329,9 @@ class SalesOrderOutWardedLog(models.Model):
     send_at=models.DateTimeField(null=True,blank=True)
     returned_by_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='returned_by_user_id_sales_order')
     returned_at=models.DateTimeField(null=True,blank=True)
+=======
+    status=models.CharField(max_length=255,choices=[('DRAFT','DRAFT'),('SENT','SENT'),('DELIVERED','DELIVERED'),('PARTIAL DELIVERED','PARTIAL DELIVERED'),('CANCELLED','CANCELLED'),('RETURNED','RETURNED')],default='DRAFT')
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
     domain_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='domain_user_id_outwarded_log')
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
@@ -190,6 +339,7 @@ class SalesOrderOutWardedLog(models.Model):
 class SalesOrderItemOutwardedLog(models.Model):
     id=models.AutoField(primary_key=True)
     so_item_id=models.ForeignKey(SalesOrderOrderItems,on_delete=models.CASCADE,blank=True,null=True,related_name='so_item_id_outwarded_log')
+<<<<<<< HEAD
     so_outwarded_id=models.ForeignKey(SalesOrderOutWardedLog,on_delete=models.CASCADE,blank=True,null=True,related_name='so_item_id_outwarded_log_outwarded_id')
     outwarded_quantity=models.IntegerField()
     buy_price=models.DecimalField(max_digits=10,decimal_places=2,default=0)
@@ -205,6 +355,17 @@ class SalesOrderItemOutwardedLog(models.Model):
     shipping_cancelled_tax_percentage=models.DecimalField(max_digits=10,decimal_places=2,default=0)
     additional_details=models.JSONField()
     status=models.CharField(max_length=255,choices=[('DELIVERED','DELIVERED'),('ROLLEDBACK','ROLLEDBACK'),('RETURNED','RETURNED')],default='DELIVERED')
+=======
+    outwarded_quantity=models.IntegerField()
+    price=models.DecimalField(max_digits=10,decimal_places=2)
+    tax_percentage=models.DecimalField(max_digits=10,decimal_places=2)
+    discount_amount=models.DecimalField(max_digits=10,decimal_places=2)
+    discount_type=models.CharField(max_length=255,choices=[('PERCENTAGE','PERCENTAGE'),('AMOUNT','AMOUNT')],default='PERCENTAGE')
+    shipping_amount=models.DecimalField(max_digits=10,decimal_places=2)
+    shipping_tax_percentage=models.DecimalField(max_digits=10,decimal_places=2)
+    additional_details=models.JSONField()
+    status=models.CharField(max_length=255,choices=[('DRAFT','DRAFT'),('SENT','SENT'),('DELIVERED','DELIVERED'),('PARTIAL DELIVERED','PARTIAL DELIVERED'),('CANCELLED','CANCELLED'),('RETURNED','RETURNED')],default='DRAFT')
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
     domain_user_id=models.ForeignKey(Users,on_delete=models.CASCADE,blank=True,null=True,related_name='domain_user_sales_order_id_outwarded_log')
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)

@@ -7,16 +7,22 @@ import { GlobalStyles } from '../layout/GlobalStyle';
 import { useNavigate } from 'react-router-dom';
 import useApi from '../hooks/APIHandler';
 import { toast } from 'react-toastify';
+<<<<<<< HEAD
 import { useDispatch } from 'react-redux';
 import { login } from '../redux/reducer/IsLoggedInReducer';
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
 
 const Auth = () => {
   const [tab, setTab] = useState(0);
   const [themeMode, setThemeMode] = useState('basic');
   const navigate=useNavigate();
   const {callApi,error,loading}=useApi();
+<<<<<<< HEAD
   const dispatch=useDispatch();
   
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
   useEffect(() => {
     const savedTheme = localStorage.getItem('theme') || 'basic';
     setThemeMode(savedTheme);
@@ -71,7 +77,10 @@ const Auth = () => {
     if(response?.data?.access){
         localStorage.setItem("token",response.data.access);
         toast.success("Signup Successfully");
+<<<<<<< HEAD
         dispatch(login());
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
         navigate("/home");
     }
     else{
@@ -87,9 +96,13 @@ const doLogin = async(e) => {
     if(response?.data?.access){
       localStorage.setItem("token",response.data.access);
           toast.success("Login Successfully");
+<<<<<<< HEAD
           dispatch(login());
           navigate("/home");
 
+=======
+          navigate("/home");
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
     }
     else{
           toast.error("Invalid Credentials");
@@ -114,7 +127,11 @@ const doLogin = async(e) => {
           <Card sx={{ maxWidth: 400, width: '100%' }}>
             <CardContent>
               <Box sx={{ display: 'flex', justifyContent: 'center', mb: 2 }}>
+<<<<<<< HEAD
                 <img src={theme.logo.square} alt="Logo" style={{ borderRadius: '50%',width:'100px' }} />
+=======
+                <img src={'https://picsum.photos/100'} alt="Logo" style={{ borderRadius: '50%' }} />
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
               </Box>
               <Typography variant="h5" align="center" gutterBottom>
                 EzyMarket

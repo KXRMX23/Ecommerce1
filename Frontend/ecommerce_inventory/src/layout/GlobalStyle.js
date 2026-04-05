@@ -111,6 +111,7 @@ export const GlobalStyles = () => {
         .active-sidebar svg{
           color:${theme.palette.background.light}!important;
         }
+<<<<<<< HEAD
         .shimmer{
           width:100%;
           height:100%;
@@ -131,6 +132,9 @@ export const GlobalStyles = () => {
           .MuiDialogContent-root{
             background-color:${theme.palette.background.default};
           }
+=======
+        
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
       `}
     />
   );

@@ -14,6 +14,7 @@ import DynamicForm from './pages/DynamicForm';
 import 'react-toastify/dist/ReactToastify.css';
 import './style/style.css';
 import ManageCategories from './pages/category/ManageCategories';
+<<<<<<< HEAD
 import ManageProducts from './pages/products/ManageProducts';
 import Error404Page from './pages/Error404Page';
 import ManageWarhouse from './pages/warehouse/ManageWarehouse';
@@ -25,6 +26,11 @@ import ManagePurchaseOrder from './pages/purchaseorder/ManagePurchaseOrder';
 function App() {
   const {status,error,items}=useSelector(state=>state.sidebardata);
   const {isLoggedIn}=useSelector(state=>state.isLoggedInReducer);
+=======
+
+function App() {
+  const {status,error,items}=useSelector(state=>state.sidebardata);
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
   const dispatch=useDispatch();
   
   useEffect(()=>{
@@ -33,17 +39,21 @@ function App() {
     }
   },[status,dispatch])
   
+<<<<<<< HEAD
   useEffect(()=>{
     if(isLoggedIn){
       dispatch(fetchSidebar());
     }
   },[isLoggedIn])
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
   const router=createBrowserRouter(
     [
       {path:"/auth",element:<Auth/>},
       {
         path:"/",
         element:<Layout sidebarList={items}/>,
+<<<<<<< HEAD
         errorElement:<Layout sidebarList={items} childPage={<Error404Page/>}/>,
         children:[
           {path:"/",element:<ProtectedRoute element={<Home/>}/>},
@@ -57,6 +67,12 @@ function App() {
           {path:"/create/po",element:<ProtectedRoute element={<CreatePurchaseOrder/>}/>},
           {path:"/create/po/:id?",element:<ProtectedRoute element={<CreatePurchaseOrder/>}/>},
           {path:"/manage/purchaseorder",element:<ProtectedRoute element={<ManagePurchaseOrder/>}/>}
+=======
+        children:[
+          {path:"/",element:<ProtectedRoute element={<Home/>}/>},
+          {path:"/form/:formName",element:<ProtectedRoute element={<DynamicForm/>}/>},
+          {path:"/manage/category",element:<ProtectedRoute element={<ManageCategories/>}/>}
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
         ]},
     ]
   )

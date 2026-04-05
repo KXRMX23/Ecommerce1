@@ -1,17 +1,26 @@
 import {useFormContext} from 'react-hook-form';
 import { Box,Divider,Icon,TextField } from "@mui/material";
 import { Delete } from '@mui/icons-material';
+<<<<<<< HEAD
 import { useEffect, useState } from 'react';
+=======
+import { useState } from 'react';
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
 import AddIcon from '@mui/icons-material/Add';
 import { Button, IconButton } from '@mui/material';
 
 const JsonInputComponent =({fields})=>{
     const {register} = useFormContext();
+<<<<<<< HEAD
     const [keyValuePairs,setKeyValuePairs]=useState([]);
+=======
+    const [keyValuePairs,setKeyValuePairs]=useState([{key:'',value:''}]);
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
     const handleKeyValueRemove=(index)=>{
         const newPairs=keyValuePairs.filter((_,i)=>i!==index);
         setKeyValuePairs(newPairs);
     }
+<<<<<<< HEAD
 
     useEffect(()=>{
         if(fields.default){
@@ -22,6 +31,8 @@ const JsonInputComponent =({fields})=>{
         }
     },[])
 
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
     const handleKeyValueAdd=()=>{
         setKeyValuePairs([...keyValuePairs,{key:'',value:''}])
     }
@@ -35,7 +46,10 @@ const JsonInputComponent =({fields})=>{
                         <TextField
                         fullWidth
                         margin="normal"
+<<<<<<< HEAD
                         sx={{ml:1,mr:1}}
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
                         key={fields.name}
                         label="Key"
                         {...register(`${fields.name}[${index}].key`)}
@@ -45,7 +59,10 @@ const JsonInputComponent =({fields})=>{
                         <TextField
                         fullWidth
                         margin="normal"
+<<<<<<< HEAD
                         sx={{ml:1,mr:1}}
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
                         key={fields.name}
                         label="Value"
                         {...register(`${fields.name}[${index}].value`)}

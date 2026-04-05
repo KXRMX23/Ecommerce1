@@ -3,6 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import exception_handler 
 from rest_framework.exceptions import AuthenticationFailed,NotAuthenticated,PermissionDenied
 from rest_framework.pagination import PageNumberPagination
+<<<<<<< HEAD
 from django.forms.models import model_to_dict
 from functools import wraps
 from django.db.models import Q
@@ -11,6 +12,8 @@ from rest_framework import serializers
 from django.urls.resolvers import URLPattern,get_resolver,URLResolver
 from django.core.serializers import serialize
 import json
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
 
 def getDynamicFormModels():
     return {
@@ -18,8 +21,11 @@ def getDynamicFormModels():
         'category':'ProductServices.Categories',
         'warehouse':'InventoryServices.Warehouse',
         'supplier':'UserServices.Users',
+<<<<<<< HEAD
         'rackShelfFloor':'InventoryServices.RackAndShelvesAndFloor',
         'users':'UserServices.Users',
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
     }
 
 def getSuperAdminDynamicFormModels():
@@ -28,6 +34,7 @@ def getSuperAdminDynamicFormModels():
     }
 
 def checkisFileField(field):
+<<<<<<< HEAD
     return field in ['image','file','path','video','audio','profile_pic']
 
 def getExludeFields():
@@ -37,6 +44,17 @@ def getDynamicFormFields(model_instance,domain_user_id,skip_related=[],skip_fiel
     fields={'text':[],'select':[],'checkbox':[],'radio':[],'textarea':[],'json':[],'file':[]}
     for field in model_instance._meta.fields:
         if field.name in getExludeFields() or field.name in skip_fields:
+=======
+    return field in ['image','file','path','video','audio']
+
+def getExludeFields():
+    return ['id','created_at','updated_at','domain_user_id','added_by_user_id','created_by_user_id','updated_by_user_id']
+
+def getDynamicFormFields(model_instance,domain_user_id):
+    fields={'text':[],'select':[],'checkbox':[],'radio':[],'textarea':[],'json':[],'file':[]}
+    for field in model_instance._meta.fields:
+        if field.name in getExludeFields():
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
             continue
 
         label=field.name.replace('_',' ').title()
@@ -60,6 +78,7 @@ def getDynamicFormFields(model_instance,domain_user_id,skip_related=[],skip_fiel
             fielddata['type']='text'
         elif field.get_internal_type()=='BooleanField' or field.get_internal_type()=='NullBooleanField':
             fielddata['type']='checkbox'
+<<<<<<< HEAD
         elif field.get_internal_type()=='DateField': 
             fielddata['type']='text'
             fielddata['isDate']=True
@@ -73,6 +92,11 @@ def getDynamicFormFields(model_instance,domain_user_id,skip_related=[],skip_fiel
                     fields['text'].append(fielddata)
                     continue
 
+=======
+        else:
+            fielddata['type']='text'
+            if isinstance(field,ForeignKey):
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
                 related_model=field.related_model
                 related_key=field.name
                 related_key_name=''
@@ -86,7 +110,10 @@ def getDynamicFormFields(model_instance,domain_user_id,skip_related=[],skip_fiel
 
                 fielddata['options']=[{'id':option[0],'value':option[1]} for option in options]
                 fielddata['type']='select'
+<<<<<<< HEAD
                 fielddata['default']=model_to_dict(model_instance)[field.name] if field.name in model_to_dict(model_instance) else ''
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
         fields[fielddata['type']].append(fielddata)                
     return fields
 
@@ -126,6 +153,7 @@ def custom_exception_handler(exc, context):
     
 class CustomPageNumberPagination(PageNumberPagination):
     page_size_query_param='pageSize'
+<<<<<<< HEAD
     max_page_size=100
 
 
@@ -288,3 +316,6 @@ def executeQuery(query,params):
         cursor.execute(query,params)
         columns=[col[0] for col in cursor.description]
         return [dict(zip(columns,row)) for row in cursor.fetchall()]
+=======
+    max_page_size=100
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f

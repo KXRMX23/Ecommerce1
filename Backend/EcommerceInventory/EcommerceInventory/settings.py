@@ -31,8 +31,17 @@ DEBUG = os.getenv('DEBUG','True') == 'True'
 
 ALLOWED_HOSTS = ["*"]
 
+<<<<<<< HEAD
 
 # Application definition
+=======
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  # Directory for collectstatic
+
+# Additional locations of static files
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),  # Directory for static files used in development
+]# Application definition
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -59,7 +68,10 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+<<<<<<< HEAD
     'EcommerceInventory.middleware.PermissionMiddleware.PermissionMiddleware',
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
 ]
 
 REST_FRAMEWORK={
@@ -68,11 +80,18 @@ REST_FRAMEWORK={
     'PAGE_SIZE':10
 }
 
+<<<<<<< HEAD
 # CORS_ALLOWED_ORIGINS = [
 #     "http://*"
 # ]
 
 CORS_ALLOW_ALL_ORIGINS = True
+=======
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+]
+
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
 ROOT_URLCONF = 'EcommerceInventory.urls'
 
 TEMPLATES = [
@@ -144,10 +163,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = '/static/'
+<<<<<<< HEAD
 STATIC_ROOT = os.path.join(BASE_DIR,'staticfiles')
 STATICFILES_DIRS=[
     os.path.join(BASE_DIR,'static'),
 ]
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
@@ -174,9 +196,12 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_LIFETIME': timedelta(minutes=5),
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
+<<<<<<< HEAD
 
 
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_ACESS_KEY_SECRET = os.getenv('AWS_ACESS_KEY_SECRET')
 AWS_STORAGE_BUCKET_NAME=os.getenv('AWS_STORAGE_BUCKET_NAME')
 AWS_S3_REGION_NAME=os.getenv('AWS_S3_REGION_NAME')
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f

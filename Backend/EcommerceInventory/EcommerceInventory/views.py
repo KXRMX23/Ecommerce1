@@ -1,4 +1,5 @@
 from django.shortcuts import render
+<<<<<<< HEAD
 from rest_framework.views import APIView
 from rest_framework.parsers import MultiPartParser,FormParser
 from rest_framework.response import Response
@@ -36,3 +37,8 @@ class FileUploadViewInS3(APIView):
             s3url=f"https://{AWS_STORAGE_BUCKET_NAME}.s3.amazonaws.com/{file_path}"
             uploaded_files_urls.append(s3url)
         return Response({'message':'File uploaded successfully','urls':uploaded_files_urls},status=200)
+=======
+
+def index(request):
+    return render(request, 'index.html')
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f

@@ -26,9 +26,12 @@ class Warehouse(models.Model):
     created_at=models.DateTimeField(auto_now_add=True)
     updated_at=models.DateTimeField(auto_now=True)
 
+<<<<<<< HEAD
     def defaultkey():
         return "name"
 
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
 class RackAndShelvesAndFloor(models.Model):
     id=models.AutoField(primary_key=True)
     name=models.CharField(max_length=255,blank=True,null=True)

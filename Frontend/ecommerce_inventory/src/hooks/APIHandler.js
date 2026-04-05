@@ -1,7 +1,10 @@
 import {useState} from 'react';
 import axios from 'axios';
 import config from '../utils/config';
+<<<<<<< HEAD
 import { toast } from 'react-toastify';
+=======
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
 function useApi(){
     const [error,setError]=useState("");
     const [loading,setLoading]=useState(false);
@@ -12,6 +15,7 @@ function useApi(){
         header['Authorization']=localStorage.getItem('token')?`Bearer ${localStorage.getItem('token')}`:"";
         try{
             response=await axios.request({params:params,url:gUrl,method:method,data:body,headers:header});
+<<<<<<< HEAD
             
         }
         catch(err){
@@ -19,6 +23,10 @@ function useApi(){
             if(err.response?.data?.message){
                 toast.error(err.response.data.message);
             }
+=======
+        }
+        catch(err){
+>>>>>>> cc9368e6b21427bc48b26647a666ef918d570d3f
             setError(err)
         }
         setLoading(false);
