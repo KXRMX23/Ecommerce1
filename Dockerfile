@@ -2,7 +2,7 @@
 #Stage 1:Build Frontend
 FROM node:18 as build-stage
 
-WORKDIR /code
+WORKDIR /app
 
 COPY ./Frontend/ecommerce_inventory/ /code/Frontend/ecommerce_inventory/
 
