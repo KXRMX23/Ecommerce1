@@ -51,7 +51,8 @@ CMD ["gunicorn","EcommerceInventory.wsgi:application","--bind","0.0.0.0:8000"]
 
 # Stage 1: Build frontend
 FROM node:18 as build-stage
-WORKDIR /code
+
+WORKDIR /app
 
 # # Set working directory for frontend
 # WORKDIR /app/frontend
