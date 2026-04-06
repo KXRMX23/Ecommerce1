@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
-import sidebarReducer from "../redicer/sidebardata";
-import IsLoggedInReducer from "../redicer/isLoggedInReducer";
+import sidebarReducer from "../reducer/sidebardata";
+import IsLoggedInReducer from "../reducer/isLoggedInReducer";
 
 const store = configureStore({
   reducer: {
